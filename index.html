@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <title>Hapax Legomena Finder</title>
+
+   <meta name="description" content="Find Hapax Legomena from the safety of your browser.">
+   <meta property="og:image" content="[[Insert Absolute Path]]">
+
+   <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="inner-column">
+            <div class="title">Hapax Legomena Finder</div>
+        </div>
+    </header>
+    <main>
+        <section class="explanation">
+            <div class="inner-column">
+                <p>A <em>hapax legomenon</em> (abbreviated to <em>hapax</em>, pl. <em>hapax legomena</em>) is a word that is used only once in a body of text. The term comes from the study of ancient texts. Hapax legomena are the prickly outliers of translation—words that come to us with only a single context from which we can try to infer their meanings.</p>
+            </div>
+        </section>
+        <section class="file-selection">
+            <div class="inner-column">
+                <div class="select-text">
+                    <button onclick="fileInput.click()">Select Text</button>
+                    <input type="file" id="fileInput">
+                </div>
+                <!-- <input type="number" value="1" id="depthInput" placeholder="Depth" /> -->
+                <button class="find-hapaxes" onclick="processFile()">Find Hapaxes</button>
+            </div>
+        </section>
+        <section class="hapax-output">
+            <div class="inner-column">
+                <pre id="output"></pre>
+            </div>
+        </section>
+    </main>
+    
+    
+    <script>
+        // Initialize the WebAssembly module
+        var Module = {
+            onRuntimeInitialized: function() {
+                console.log('WASM loaded');
+            }
+        };
+    </script>
+
+    <script src="hapax.js"></script>
+
+    <script>
+        function processFile() {
+            const fileInput = document.getElementById('fileInput');
+            // const depthInput = document.getElementById('depthInput');
+            const output = document.getElementById('output');
+
+            if (fileInput.files.length === 0) {
+                output.textContent = 'Please select a file!';
+                return;
+            }
+
+
+            const file = fileInput.files[0];
+            // disabling depth for now, not actually needed
+            // const depth = depthInput.value;
+            const depth = 1;
+
+            if (!depth) {
+                output.textContent = 'Please enter a depth value!';
+                return;
+            }
+
+            const reader = new FileReader();
+
+            reader.onload = function(event) {
+                const content = event.target.result;
+
+                // Create a virtual filesystem in the browser
+                FS.writeFile('input.txt', content);
+                FS.open('output.txt', 'w+');
+
+                // Run the WebAssembly module
+                Module.callMain(['input.txt', 'output.txt', depth]);
+
+                // Read the output file from the virtual filesystem
+                const result = FS.readFile('output.txt', { encoding: 'utf8' });
+                output.textContent = result;
+            };
+
+            reader.readAsText(file);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+@import 'reset.css';
+@import 'setup.css';
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap');
+
+body {
+   font-family: "Roboto Mono";
+}
+
+.inner-column {
+   max-width: 900px;
+   margin-inline: auto;
+   padding-inline: .7rem;
+}
+
+header {
+   background-color: black;
+   color: white;
+}
+.title {
+   font-family: "Roboto Mono";
+   font-weight: 400;
+   font-size: min(162px, 20vw);
+   padding-bottom: 2rem;
+   line-height: .8;
+}
+
+section {
+   padding-top: 3rem;
+}
+
+p {
+   line-height: 1.4;
+}
+
+button {
+   font-family: "Roboto Mono";
+}
+
+.select-text {
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+   gap: .3rem;
+}
+
+input[type=file] {
+   display: block;
+   font-family: "Roboto Mono";
+   font-style: italic;
+   width: 100%;
+ }
+ input[type=file]::file-selector-button {
+   display: none;
+ }
+
+ .find-hapaxes {
+   background-color: black;
+   color: white;
+   padding: 1rem;
+ }
+
+ .file-selection .inner-column {
+   display: flex;
+   flex-flow: row nowrap;
+   justify-content: center;
+   align-items: center;
+ }
+
+ #output {
+   columns: 3 auto;
+   line-height: 1.4;
+ }

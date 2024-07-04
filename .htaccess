@@ -1,0 +1,3 @@
+<FilesMatch "\.wasm$">
+    AddType application/wasm .wasm
+</FilesMatch>

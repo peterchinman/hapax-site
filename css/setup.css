@@ -1,0 +1,23 @@
+* {box-sizing: border-box;}
+
+picture {
+	display: block;
+}
+
+picture img {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+a {
+	display: block;
+	list-style: none;
+	color: inherit;
+}
+
+p a {
+	display: inline-block;
+	list-style: underline;
+	color: blue;
+}
