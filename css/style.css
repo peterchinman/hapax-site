@@ -1,74 +1,256 @@
+/* CSS DIRECTORY
+	1. =IMPORT
+	2. =VARIABLES
+	3. =GLOBAL
+	4. =HEADER
+	5. =PRIMARY
+      5.1 NESTED GRID
+      5.1 BUTTON STYLING
+   6. =OUTPUT
+   7. =TYPOGRAPHY
+*/
+
+/* ===IMPORT=== */
+
 @import 'reset.css';
 @import 'setup.css';
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap');
+/* import "Roboto Mono" and "Spectral" */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+/* ===VARIABLES=== */
+
+:root {
+   --neutral-1000: #000000;
+   --neutral-800:  #333333;
+   --neutral-700:  #4D4D4D;
+   --neutral-500:  #808080;
+   --neutral-50:   #F2F2F2;
+   --neutral-30:   #F7F7F7;
+   --neutral-0:    #FFFFFF;
+
+   --button-emphasis:   var(--neutral-50);
+   --button-main:       var(--neutral-0);
+   --header-text:       var(--neutral-0);
+   --body-text:         var(--netural-1000);
+   --header-bg:         var(--neutral-800);
+   --main-bg:           var(--neutral-0);
+   --second-bg:         var(--neutral-30);
+   --stroke-color:      var(--neutral-700);
+   --body-text:         var(--neutral-1000);
+   --drop-shadow-color: var(--neutral-500);
+
+   --max-width:   1100px;
+   --column-gap:  32px;
+   --big-padding: 2.5rem;
+
+}
+
+/* ===GLOBAL=== */
 
 body {
-   font-family: "Roboto Mono";
+   font-family: "Roboto Mono", monospace;
 }
 
 .inner-column {
-   max-width: 900px;
+   max-width: var(--max-width);
    margin-inline: auto;
    padding-inline: .7rem;
 }
 
+/* ===HEADER=== */
+
 header {
-   background-color: black;
-   color: white;
+   background-color: var(--header-bg);
+   color: var(--header-text);
 }
 .title {
-   font-family: "Roboto Mono";
-   font-weight: 400;
-   font-size: min(125px, 14vw);
-   padding-top: .7rem;
-   padding-bottom: 2rem;
-   line-height: .8;
+   font-family: "Roboto Mono", monospace;
+   font-weight: 200;
+   font-size: min(100px, 14vw);
+   padding-top: 1.5rem;
+   padding-bottom: 2.5rem;
+   line-height: .85;
+   white-space: pre-wrap;
 }
 
-section {
-   padding-top: 2rem;
+/* ===PRIMARY=== */
+
+main .inner-column {
+   display: grid;
+   --column-width: calc((var(--max-width) - 11 * var(--column-gap)) / 12);
+   grid-template-columns: repeat(12, minmax(var(--column-width), 1fr));
+   column-gap: var(--column-gap);
+   padding-bottom: var(--big-padding);
+
+   section {
+      /* padding-top: 2.5rem; */
+      /* display: grid;
+      grid-template-columns: subgrid; */
+   }
 }
 
-p {
-   line-height: 1.4;
+/* NESTED GRID */
+
+/* TODO make responsive */
+
+.explanation {
+   grid-column: 1 / span 6 ;
+   max-width: 80%;
+   padding-top: var(--big-padding);
 }
+
+.explore-and-select {
+   grid-column: 7 / span 6;
+   display: grid;
+   grid-template-columns: subgrid;
+   padding-top: var(--big-padding);
+}
+
+.examples {
+   grid-column: span 6;
+   display: grid;
+   grid-template-columns: subgrid;
+
+   h1 {
+      grid-column: span 6;
+   }
+
+   ul {
+      grid-column: span 6;
+      grid-row: 2;
+      display: grid;
+      grid-template-columns: subgrid;
+      grid-template-rows: repeat(3, 1fr);
+      row-gap: 1rem;
+
+      li {
+         grid-column: span 2;
+      }
+   }
+}
+
+.file-selection {
+   grid-column: span 6;
+   grid-row: 2;
+   display: grid;
+   grid-template-columns: subgrid;
+   padding-top: var(--big-padding);
+
+   h1 {
+      grid-column: span 6;
+   }
+
+   .buttons {
+      grid-column: span 6;
+      display: grid;
+      grid-template-columns: subgrid;
+
+      .input {
+         grid-column: span 3;
+      }
+   }
+}
+
+
+
+/* BUTTON STLYING */
 
 button {
-   font-family: "Roboto Mono";
-}
-
-.select-text {
-   display: flex;
-   flex-direction: column;
-   align-items: flex-start;
-   gap: .3rem;
+   font-family: "Roboto Mono", monospace;
+   font-size: 20px;
+   font-weight: 600;
+   color: var(--body-text);
+   padding-inline: 24px;
+   padding-block: 11px;
+   border: 1px solid var(--stroke-color);
+   border-radius: 5px;
+   box-shadow: 5px 5px var(--drop-shadow-color);
+   cursor: pointer;
 }
 
 input[type=file] {
    display: block;
+ }
+
+.button-label {
    font-family: "Roboto Mono";
    font-style: italic;
    width: 100%;
- }
+   padding-top: .75rem;
+   padding-left: 10px;
+   font-size: .8rem;
+   max-width: 200px;
+}
+
  input[type=file]::file-selector-button {
    display: none;
  }
 
- .find-hapaxes {
-   background-color: black;
-   color: white;
-   padding: 1rem;
+ #select-text {
+   background-color: var(--button-main);
  }
 
- .file-selection .inner-column {
+ #find-hapaxes {
+   background-color: var(--button-emphasis);
+ }
+
+ .find-hapaxes-input {
    display: flex;
-   flex-flow: row nowrap;
-   justify-content: center;
-   align-items: center;
+   flex-direction: column;
+   align-items: flex-start;
  }
 
- #output {
-   columns: 3 auto;
+/* ===OUTPUT=== */
+
+
+/* TODO use javascript to set display to grid when you click Find Hapaxes */
+
+.hapax-output {
+   background-color: var(--second-bg);
+   border-radius: 5%;
+   padding-top: var(--big-padding);
+   display: none;
+   
+}
+
+/* TODO when I figure out how to get <pre> to <ul>
+         --> get this on the same grid as <main>
+
+I should be able to use the #hapax-count value
+to figure out the correct number of rows        */
+
+#output {
+   columns: 6;
+   column-gap: var(--column-gap);
+}
+
+
+
+/* ===TYPOGRAPHY=== */
+
+.explanation p {
+   font-family: "Spectral";
    line-height: 1.4;
- }
+}
+
+.assertive {
+   font-weight: 600;
+   padding-bottom: 2rem;
+}
+
+.loud-voice {
+   font-size: 1.5rem;
+   font-weight: 700;
+   padding-bottom: 2rem;
+}
+
+em {
+   font-style: italic;
+}
+
+p + p {
+   padding-top: .75rem;
+}
+
+
