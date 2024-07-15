@@ -12,79 +12,81 @@
 </head>
 <body>
     <header>
-        <div class="inner-column">
-            <div class="title">Hapax
+        <hr class="
+        top-bar">
+        <div class="title">Hapax
 Legomenon
 Finder</div>
+        <div class="description">
+            <p>A <em>hapax legomenon</em> (abbreviated to <em>hapax</em>, pl. <em>hapax legomena</em>) is a word that's used only once in a body of text. In the translation of dead languages, hapaxes are the prickly outliers—words that come with only a single context from which to infer their meaning.</p>
+            <p>I'm interested in these the prickly points. The silhouette of a vocabulary.</p>
+            <p><a href="https://peterchinman.substack.com/p/finding-hapaxes">Read about coding this project.</a></p>
         </div>
+        <hr class="bottom-bar">
     </header>
     <main>
-        <div class="inner-column">
-            <section class="explanation">
-                <p>A <em>hapax legomenon</em> (abbreviated to <em>hapax</em>, pl. <em>hapax legomena</em>) is a word that's used only once in a body of text. In the translation of dead languages, hapaxes are the prickly outliers—words that come with only a single context from which to infer their meaning.</p>
-                <p>I'm interested in these the prickly points. The silhouette of a vocabulary.</p>
-                <p><a href="https://peterchinman.substack.com/p/finding-hapaxes">Read about coding this project.</a></p>
-            </section>
-            <section class="explore-and-select">
-                <section class="examples">
-                    <h1 class="assertive">Explore hapaxes from these texts:</h1>
-                    
-                    <!-- TODO figure out how to get this links to work
-                                probably onclick="load_moby_dick"
-                                or: when it clicks do a php include -->
-                    
-                    <ul>
-                        <li>
-                            <a href="">Moby Dick</a>
-                        </li>
-                        <li>
-                            <a href="">E. Dickinson</a>
-                        </li>
-                        <li>
-                            <a href="">The Bible</a>
-                        </li>
-                        <li>
-                            <a href="">Shakespeare</a>
-                        </li>
-                        <li>
-                            <a href="">Proust</a>
-                        </li>
-                        <li>
-                            <a href="">J. Joyce</a>
-                        </li>
-                        <li>
-                            <a href="">Homer</a>
-                        </li>
-                        <li>
-                            <a href="">Nietzsche</a>
-                        </li>
-                        <li>
-                            <a href="">Milton</a>
-                        </li>
-                    </ul>
-                </section>
-                <section class="file-selection">
-                    <h1 class="assertive">Or upload your own:</h1>
-                    <div class="buttons">
-                        <div class="select-text-input input">
-                            <button id="select-text" onclick="fileInput.click()">Select Text</button>
-                            <input class="button-label" type="file" id="fileInput">
-                        </div>
-                        <!-- <input type="number" value="1" id="depthInput" placeholder="Depth" /> -->
-                        <div class="find-hapaxes-input input">
-                            <button id="find-hapaxes" onclick="processFile()">Find Hapaxes</button>
-                            <label class="button-label" for="find-hapaxes">Note: currently can only process plaintext files</label>
-                        </div>
-                    </div>
-                </section>
-            </section>
-        </div>
+        <section class="examples">
+            <h1 class="assertive">Explore hapaxes from these texts:</h1>
+            
+            <!-- TODO figure out how to get this links to work
+                        probably onclick="load_moby_dick"
+                        or: when it clicks do a php include -->
+            
+            <ul>
+                <li>
+                    <a href="">Moby Dick</a>
+                </li>
+                <li>
+                    <a href="">Dickinson</a>
+                </li>
+                <li>
+                    <a href="">The Bible</a>
+                </li>
+                <li>
+                    <a href="">Shakespeare</a>
+                </li>
+                <li>
+                    <a href="">Proust</a>
+                </li>
+                <li>
+                    <a href="">Joyce</a>
+                </li>
+                <li>
+                    <a href="">Homer</a>
+                </li>
+                <li>
+                    <a href="">Nietzsche</a>
+                </li>
+                <li>
+                    <a href="">Milton</a>
+                </li>
+            </ul>
+        </section>
+        <section class="upload">
+            <h1 class="assertive">Or upload your own:</h1>
+            <div class="buttons">
+                <div class="select-text-button button">
+                    <button id="select-text" class="primary" onclick="fileInput.click()">Select Text</button>
+                    <input class="button-label" type="file" id="fileInput">
+                </div>
+                <!-- <input type="number" value="1" id="depthInput" placeholder="Depth" /> -->
+                <div class="find-hapaxes-button button">
+                    <button id="find-hapaxes" class="highlight" onclick="processFile()">Find Hapaxes</button>
+                    <label class="button-label" for="find-hapaxes">Note: currently can only process plaintext files</label>
+                </div>
+            </div>
+        </section>
     </main>
 
     <section class="hapax-output">
-        <div class="inner-column">
-            <h1 class="loud-voice">Found <span id="hapax-count"></span> hapaxes</h1>
-
+        <div class="hapax-card">
+            <div class="top-bar">
+                <h1 class="assertive" id="status">Waiting & Ready...</h1>
+                <div class="buttons">
+                    <button id="export" class="primary" onclick="exportHapax()" disabled>Export</button>
+                    <button id="clear" class="quiet" onclick="clearHapax()" disabled>Clear</button>
+                </div>
+            </div>
             <!-- TODO figure out how to get this pre instead as a ul, each word as li -->
             <pre id="output"></pre>
         </div>

@@ -25,24 +25,43 @@
    --neutral-800:  #333333;
    --neutral-700:  #4D4D4D;
    --neutral-500:  #808080;
+   --neutral-100:  #E5E5E5;
    --neutral-50:   #F2F2F2;
    --neutral-30:   #F7F7F7;
    --neutral-0:    #FFFFFF;
+   --transparent: transparent;
 
-   --button-emphasis:   var(--neutral-50);
-   --button-main:       var(--neutral-0);
-   --header-text:       var(--neutral-0);
+   --ecru:         #FEFFF0;
+   --golden:       #FFF8B2;
+   --dark-lav:     #8A7AB8;
+   --light-lav:    #F7F6F9;
+
+
+   --header-bg:         var(--ecru);
+   --header-text:       var(--neutral-900);
+   --header-shadow:     #D2CA7880;
+
+   --main-bg:           var(--ecru);
    --body-text:         var(--netural-1000);
-   --header-bg:         var(--neutral-800);
-   --main-bg:           var(--neutral-0);
-   --second-bg:         var(--neutral-30);
+
+   --second-bg:         var(--light-lav);
+
+
+   --button-primary:       var(--ecru);
+   --button-emphasis:   var(--golden);
+   --button-quiet:      var(--neutral-100);
+
+
+
+
    --stroke-color:      var(--neutral-700);
    --body-text:         var(--neutral-1000);
-   --drop-shadow-color: var(--neutral-500);
+   --drop-shadow-color: var(--dark-lav);
 
-   --max-width:   1100px;
+   --max-width:   1200px;
    --column-gap:  32px;
    --big-padding: 2.5rem;
+   --outer-columns: 40px;
 
 }
 
@@ -50,12 +69,12 @@
 
 body {
    font-family: "Roboto Mono", monospace;
-}
+   background-color: var(--main-bg);
 
-.inner-column {
    max-width: var(--max-width);
    margin-inline: auto;
-   padding-inline: .7rem;
+   
+   
 }
 
 /* ===HEADER=== */
@@ -63,57 +82,67 @@ body {
 header {
    background-color: var(--header-bg);
    color: var(--header-text);
+
+   padding-top: 40px;
+   padding-bottom: 80px;
+
+   display: grid;
+   --column-width: calc((var(--max-width) - 11 * var(--column-gap) - 2 * var(--outer-columns)) / 12);
+   /* grid-template-columns: var(--outer-columns) repeat(12, var(--column-width)) var(--outer-columns); */
+   grid-template-columns: var(--outer-columns) repeat(12, 1fr) var(--outer-columns);
+   column-gap: var(--column-gap);
+
+   align-items: center;
+
+
+   hr {
+      grid-column: span 14;
+      width: 100%;
+   }
+
+   .top-bar {
+      margin-bottom: 60px;
+   }
+
+   .bottom-bar {
+      margin-top: 60px;
+   }
+
+   .title {
+      grid-column: 2 / span 6;
+   }
+
+   .description {
+      grid-column: span 6; 
+   }
 }
-.title {
-   font-family: "Roboto Mono", monospace;
-   font-weight: 200;
-   font-size: min(100px, 14vw);
-   padding-top: 1.5rem;
-   padding-bottom: 2.5rem;
-   line-height: .85;
-   white-space: pre-wrap;
-}
+
 
 /* ===PRIMARY=== */
 
-main .inner-column {
-   display: grid;
-   --column-width: calc((var(--max-width) - 11 * var(--column-gap)) / 12);
-   grid-template-columns: repeat(12, minmax(var(--column-width), 1fr));
-   column-gap: var(--column-gap);
+main {
+   background-color: var(--main-bg);
    padding-bottom: var(--big-padding);
 
-   section {
-      /* padding-top: 2.5rem; */
-      /* display: grid;
-      grid-template-columns: subgrid; */
-   }
+   display: grid;
+   --column-width: calc((var(--max-width) - 11 * var(--column-gap)) / 12);
+   grid-template-columns: var(--outer-columns) repeat(12, 1fr) var(--outer-columns);
+   column-gap: var(--column-gap);
+   /* grid-auto-flow: column; */
+   
 }
 
 /* NESTED GRID */
 
-/* TODO make responsive */
-
-.explanation {
-   grid-column: 1 / span 6 ;
-   max-width: 80%;
-   padding-top: var(--big-padding);
-}
-
-.explore-and-select {
-   grid-column: 7 / span 6;
-   display: grid;
-   grid-template-columns: subgrid;
-   padding-top: var(--big-padding);
-}
-
 .examples {
-   grid-column: span 6;
+   grid-column: 2 / span 6;
+
    display: grid;
    grid-template-columns: subgrid;
 
    h1 {
       grid-column: span 6;
+      padding-right: 1rem;
    }
 
    ul {
@@ -130,12 +159,10 @@ main .inner-column {
    }
 }
 
-.file-selection {
+.upload {
    grid-column: span 6;
-   grid-row: 2;
    display: grid;
    grid-template-columns: subgrid;
-   padding-top: var(--big-padding);
 
    h1 {
       grid-column: span 6;
@@ -143,12 +170,9 @@ main .inner-column {
 
    .buttons {
       grid-column: span 6;
-      display: grid;
-      grid-template-columns: subgrid;
-
-      .input {
-         grid-column: span 3;
-      }
+      grid-row: 2;
+      display: flex;
+      justify-content: space-between;
    }
 }
 
@@ -176,6 +200,7 @@ input[type=file] {
 .button-label {
    font-family: "Roboto Mono";
    font-style: italic;
+   font-weight: 200;
    width: 100%;
    padding-top: .75rem;
    padding-left: 10px;
@@ -187,15 +212,19 @@ input[type=file] {
    display: none;
  }
 
- #select-text {
-   background-color: var(--button-main);
+button.primary {
+   background-color: var(--button-primary);
  }
 
- #find-hapaxes {
+button.highlight {
    background-color: var(--button-emphasis);
  }
 
- .find-hapaxes-input {
+ button.quiet {
+   background-color: var(--button-quiet);
+ }
+
+ .find-hapaxes-button {
    display: flex;
    flex-direction: column;
    align-items: flex-start;
@@ -207,10 +236,41 @@ input[type=file] {
 /* TODO use javascript to set display to grid when you click Find Hapaxes */
 
 .hapax-output {
-   background-color: var(--second-bg);
-   border-radius: 5%;
-   padding-top: var(--big-padding);
-   display: none;
+   display: grid;
+   --column-width: calc((var(--max-width) - 11 * var(--column-gap)) / 12);
+   grid-template-columns: var(--outer-columns) repeat(12, 1fr) var(--outer-columns);
+   column-gap: var(--column-gap);
+
+   .hapax-card{
+
+      padding-block: 4rem;
+      grid-column: span 14;
+      background-color: var(--second-bg);
+      border-radius: 30px;
+      
+      display: grid;
+      grid-template-columns: subgrid;
+   
+      .top-bar {
+      
+         grid-column: 2 / span 12;
+         display: grid;
+         grid-template-columns: subgrid;
+         align-items: center;
+   
+         #status {
+            grid-column: span 6;
+         }
+   
+         .buttons {
+            grid-column: span 6;
+            display: flex;
+            justify-content: space-between;
+         }
+   
+      }
+   }
+
    
 }
 
@@ -229,20 +289,28 @@ to figure out the correct number of rows        */
 
 /* ===TYPOGRAPHY=== */
 
-.explanation p {
+
+.title {
+   font-family: "Roboto Mono", monospace;
+   font-weight: 500;
+   font-size: min(80px, 7vw);
+
+   line-height: 1.1;
+   white-space: pre-wrap;
+
+   text-shadow: 5px 5px var(--header-shadow);
+}
+
+header p {
    font-family: "Spectral";
    line-height: 1.4;
+   font-size: 1.3rem;
 }
 
 .assertive {
    font-weight: 600;
    padding-bottom: 2rem;
-}
-
-.loud-voice {
    font-size: 1.5rem;
-   font-weight: 700;
-   padding-bottom: 2rem;
 }
 
 em {
