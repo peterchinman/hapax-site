@@ -270,7 +270,7 @@ button.highlight {
 
    .hapax-card {
 
-      padding-top: 4rem;
+      padding-block: 4rem;
       grid-column: span 14;
       background-color: var(--second-bg);
       border-radius: 30px;
