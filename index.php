@@ -67,7 +67,6 @@ Finder</div>
                     <button id="clear" class="quiet" onclick="clearHapaxes()" disabled>Clear</button>
                 </div>
             </div>
-            <!-- TODO figure out how to get this pre instead as a ul, each word as li -->
             <div id="output"></div>
         </div>
     </section>
@@ -130,7 +129,6 @@ Finder</div>
                 // Read the output file from the virtual filesystem
                 const result = FS.readFile('output.txt', { encoding: 'utf8' });
                 output.textContent = result;
-                // TODO set focus on .hapax-output?
 
                 // I had to use the following janky code in order to count the number of hapaxes. I think it's much slower than if I just got the C++ to also return a count of hapaxes.
                 const hapaxesArray = result.split('\n').filter(word => word.trim() !== ''); // Split into lines and filter out empty strings

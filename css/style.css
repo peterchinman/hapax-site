@@ -257,8 +257,6 @@ button.highlight {
 /* ===OUTPUT=== */
 
 
-/* TODO use javascript to set display to grid when you click Find Hapaxes */
-
 .hapax-output {
    padding-top: 4rem;
 
@@ -307,6 +305,8 @@ button.highlight {
          white-space: pre-wrap;
          word-wrap: break-word;
          hyphens: auto;
+
+         /* TODO this padding should only appear when there are results?? */
          padding-bottom: 4rem;
       }
    }
@@ -314,11 +314,6 @@ button.highlight {
    
 }
 
-/* TODO when I figure out how to get <pre> to <ul>
-         --> get this on the same grid as <main>
-
-I should be able to use the #hapax-count value
-to figure out the correct number of rows        */
 
 #output {
    columns: 6;
