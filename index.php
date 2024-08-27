@@ -6,7 +6,7 @@
    <title>Hapax Legomenon Finder</title>
 
    <meta name="description" content="Find Hapax Legomena from the safety of your browser.">
-   <meta property="og:image" content="https://peprojects.dev/beta-one/peter/hapax-finder/static/share-card.jpg">
+   <meta property="og:image" content="https://peprojects.dev/beta-one/peter/hapax-finder/static/sharecard.jpg">
 
    <link href="css/style.css" rel="stylesheet">
 </head>
