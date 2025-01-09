@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1">
-   <title>Hapax Legomenon Finder</title>
 
-   <meta name="description" content="Find Hapax Legomena from the safety of your browser.">
-   <meta property="og:image" content="https://peprojects.dev/beta-one/peter/hapax-finder/static/sharecard.jpg">
+    <!-- Adding this base to try to fix linking when this gets included as subdirectory on peterchinman.com -->
+    <!-- Does it cause unexpected problems? -->
+    <base href="<?= dirname($_SERVER['SCRIPT_NAME']) ?>/" />
 
-   <link href="css/style.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hapax Legomenon Finder</title>
+
+    <meta name="description" content="Find Hapax Legomena from the safety of your browser.">
+    <meta property="og:image" content="static/sharecard.jpg">
+
+    <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -20,7 +25,7 @@ Finder</div>
         <div class="description">
             <p>A <em>hapax legomenon</em> (abbreviated to <em>hapax</em>, pl. <em>hapax legomena</em>) is a word that's used only once in a body of text. In the translation of dead languages, hapaxes are the prickly outliers—words that come with only a single context from which to infer their meaning.</p>
             <p>I'm interested in these the prickly points. The silhouette of a vocabulary.</p>
-            <p><a href="https://peterchinman.com/projects/hapax-finder">Read about coding this project.</a></p>
+            <p><a href="https://peterchinman.com/blog/hapax-finder">Read about coding this project.</a></p>
         </div>
         <hr class="bottom-bar">
     </header>
