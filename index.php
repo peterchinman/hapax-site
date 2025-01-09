@@ -4,7 +4,7 @@
 
     <!-- Adding this base to try to fix linking when this gets included as subdirectory on peterchinman.com -->
     <!-- Does it cause unexpected problems? -->
-    <base href="<?= dirname($_SERVER['SCRIPT_NAME']) ?>/" />
+    <base href="<?= dirname($_SERVER['SCRIPT_NAME']) ?>" />
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
