@@ -31,7 +31,7 @@ jobs:
         env:
           DEPLOY_PATH: /var/www/peterchinman.com/hapax-finder
         run: |
-          # make director if it doesn't exist already
+          # make directory if it doesn't exist already
           ssh root@${{ secrets.DROPLET_IP }} "\
             mkdir -p $DEPLOY_PATH"
 
