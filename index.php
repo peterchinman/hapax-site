@@ -2,15 +2,6 @@
 <html lang="en">
 <head>
 
-    <!-- Adding this base to try to fix linking when this gets included as subdirectory on peterchinman.com -->
-    <?php
-    // Determine the environment
-    $isLocal = ($_SERVER['SERVER_NAME'] === 'localhost' || $_SERVER['SERVER_ADDR'] === '127.0.0.1');
-
-    // Set the base URL accordingly
-    $baseHref = $isLocal ? '/' : '/hapax-finder/';
-    ?>
-
     <base href="<?= $baseHref ?>" />
 
     <meta charset="UTF-8">
